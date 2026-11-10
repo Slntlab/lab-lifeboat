@@ -1,0 +1,24 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//HomelabWise//Lab Lifeboat//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:lab-lifeboat-restore-drill@homelabwise.com
+DTSTAMP:20261110T000000Z
+DTSTART;VALUE=DATE:20261201
+DTEND;VALUE=DATE:20261202
+RRULE:FREQ=MONTHLY;INTERVAL=3
+SUMMARY:Homelab restore drill
+DESCRIPTION:Pick one service and restore it from backup on a spare machine 
+ or VM. Follow your Lab Lifeboat runbook\, then record today as the last re
+ store test. https://homelabwise.com/tools/lab-lifeboat/
+URL:https://homelabwise.com/tools/lab-lifeboat/
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Homelab restore drill
+TRIGGER:-P1D
+END:VALARM
+END:VEVENT
+END:VCALENDAR

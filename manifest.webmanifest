@@ -1,0 +1,17 @@
+{
+  "name": "Lab Lifeboat",
+  "short_name": "Lab Lifeboat",
+  "description": "Free homelab disaster recovery planner: record your services, backups and where secrets live, then print step-by-step restore runbooks.",
+  "id": "./",
+  "start_url": "./?source=pwa",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fbfcfb",
+  "theme_color": "#0b6e5f",
+  "categories": ["utilities", "productivity"],
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

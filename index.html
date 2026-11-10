@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Free Homelab Disaster Recovery Planner – Lab Lifeboat</title>
+  <meta name="description" content="Free homelab disaster recovery planner: turn your setup into printable restore runbooks for Immich, Vaultwarden, Nextcloud, Proxmox and more. Offline, no account.">
+  <link rel="canonical" href="https://homelabwise.com/tools/lab-lifeboat/">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Lab Lifeboat","alternateName":"Lab Lifeboat homelab disaster recovery planner","url":"https://homelabwise.com/tools/lab-lifeboat/","description":"Free homelab disaster recovery planner: turn your setup into printable restore runbooks for Immich, Vaultwarden, Nextcloud, Proxmox and more. Offline, no account.","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Backup and disaster recovery planning","operatingSystem":"Any (web browser, installable PWA)","isAccessibleForFree":true,"image":"https://homelabwise.com/tools/lab-lifeboat/og-lab-lifeboat.png","screenshot":"https://homelabwise.com/tools/lab-lifeboat/og-lab-lifeboat.png","softwareVersion":"1.0","datePublished":"2026-11-10","inLanguage":"en","featureList":["Restore runbooks for Proxmox VE, Vaultwarden, Caddy, Home Assistant, Nextcloud AIO, Immich, Paperless-ngx and Jellyfin","Works offline and installs as an app","Print or save as PDF","JSON export and import, Markdown download","No passwords stored: records where secrets live","Warnings for missing backups, offsite copies and restore tests"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"SLNT Labs","url":"https://github.com/Slntlab/lab-lifeboat"},"author":{"@type":"Organization","name":"SLNT Labs","url":"https://github.com/Slntlab/lab-lifeboat"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is Lab Lifeboat really free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is free, needs no account, and has no ads or affiliate links inside the tool."}},{"@type":"Question","name":"What is a homelab disaster recovery plan?","acceptedAnswer":{"@type":"Answer","text":"A written list of what you run, where its data and backups live, and the exact steps to bring each service back on new hardware. Lab Lifeboat builds that plan for you as step-by-step runbooks you can print."}},{"@type":"Question","name":"Where is my data stored?","acceptedAnswer":{"@type":"Answer","text":"Only in this browser on this device (local storage). Nothing is uploaded. Export a JSON file to move it to another device or keep a copy with your backups."}},{"@type":"Question","name":"Should I put passwords in it?","acceptedAnswer":{"@type":"Answer","text":"No. Lab Lifeboat records where each secret is kept, for example “Vaultwarden item Immich .env” or “paper sheet in the safe”. If a field looks like a real password, key or token, it warns you."}},{"@type":"Question","name":"Does it work offline?","acceptedAnswer":{"@type":"Answer","text":"Yes. After the first visit the tool is cached on your device, so it opens without internet. You can also install it from your browser menu, and print the pack or save it as a PDF."}},{"@type":"Question","name":"Which apps does it cover?","acceptedAnswer":{"@type":"Answer","text":"Built-in runbooks for Proxmox VE, Vaultwarden, Caddy, Home Assistant, Nextcloud AIO, Immich, Paperless-ngx and Jellyfin, plus custom services where you write your own steps."}},{"@type":"Question","name":"Which versions are the runbooks written for?","acceptedAnswer":{"@type":"Answer","text":"Immich v3.3.6, Vaultwarden 1.37.5, Jellyfin v12.4, Nextcloud AIO v15.0.2, Caddy 2.11.9, Home Assistant 2026.11.1, Paperless-ngx v3.4.2 and Proxmox VE 9.2, checked against the official docs on 2026-11-10. Always restore the same version you backed up."}},{"@type":"Question","name":"In what order should I restore my homelab?","acceptedAnswer":{"@type":"Answer","text":"Hypervisor first, then your password manager (the other secrets live there), then the reverse proxy, then the apps. Lab Lifeboat sorts your pack in that order."}}]}</script>
+  <link rel="icon" href="icon-192.png" sizes="192x192" type="image/png">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="SLNT Labs">
+  <meta property="og:title" content="Free Homelab Disaster Recovery Planner – Lab Lifeboat">
+  <meta property="og:description" content="Free homelab disaster recovery planner: turn your setup into printable restore runbooks for Immich, Vaultwarden, Nextcloud, Proxmox and more. Offline, no account.">
+  <meta property="og:url" content="https://homelabwise.com/tools/lab-lifeboat/">
+  <meta property="og:image" content="https://homelabwise.com/tools/lab-lifeboat/og-lab-lifeboat.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Lab Lifeboat: free homelab disaster recovery planner by SLNT Labs">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Free Homelab Disaster Recovery Planner – Lab Lifeboat">
+  <meta name="twitter:description" content="Free homelab disaster recovery planner: turn your setup into printable restore runbooks for Immich, Vaultwarden, Nextcloud, Proxmox and more. Offline, no account.">
+  <meta name="twitter:image" content="https://homelabwise.com/tools/lab-lifeboat/og-lab-lifeboat.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#0b6e5f">
+  <link rel="stylesheet" href="lifeboat.css">
+</head>
+<body>
+  <header class="lb-chrome">
+    <div class="wrap"><a class="logo" href="./">Lab Lifeboat</a></div>
+  </header>
+  <main>
+    <h1>Lab Lifeboat: free homelab disaster recovery planner</h1>
+    <p class="lead">Backups are only half a plan. When a disk dies, an upgrade goes wrong or the house floods, you also need to know what to restore, in what order, and where the keys are. Lab Lifeboat turns your hosts, services and backups into a step-by-step restore runbook you keep offline or on paper.</p>
+    <ul>
+      <li><strong>Free</strong>, no account, works offline and installs like an app.</li>
+      <li>Runbooks for Proxmox VE, Vaultwarden, Caddy, Home Assistant, Nextcloud AIO, Immich, Paperless-ngx and Jellyfin, and your own services.</li>
+      <li>Export and import as JSON, download Markdown, or print and save as PDF.</li>
+    </ul>
+    <p><a class="btn" href="#lifeboat">Start your recovery pack</a> <a class="btn btn2" href="#how">How it works</a></p>
+
+    <section id="lifeboat" class="lb" aria-label="Lab Lifeboat">
+      <div class="lb-warn" role="note"><strong>Never type passwords, keys or tokens here.</strong> Record <em>where</em> each secret is kept (for example a Vaultwarden item or a sheet in your safe). Everything you enter stays in this browser and is never sent anywhere.</div>
+      <noscript><p class="note">Lab Lifeboat needs JavaScript. It runs only in your browser and sends nothing.</p></noscript>
+      <div class="lb-app" hidden>
+        <div class="lb-bar">
+          <button type="button" class="lb-btn lb-primary" data-act="print">Print or save as PDF</button>
+          <button type="button" class="lb-btn" data-act="export">Export JSON</button>
+          <button type="button" class="lb-btn" data-act="import">Import JSON</button>
+          <button type="button" class="lb-btn" data-act="markdown">Download Markdown</button>
+          <button type="button" class="lb-btn" data-act="example">Load example</button>
+          <button type="button" class="lb-btn" data-act="install" hidden>Install app</button>
+          <button type="button" class="lb-btn lb-del" data-act="erase">Erase all</button>
+          <input type="file" id="lb-file" accept="application/json,.json" hidden>
+        </div>
+        <p class="lb-status"><span id="lb-status">Nothing saved yet.</span> <span id="lb-offline"></span> <span id="lb-net"></span></p>
+        <div class="lb-cols">
+          <div class="lb-panel lb-edit-col"><h2 class="sec">1. Your lab</h2><div id="lb-editor"></div></div>
+          <div class="lb-panel lb-pack-col"><h2 class="sec">2. Recovery pack</h2><div id="lb-pack" aria-live="polite"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <h2 id="why">Why a recovery pack?</h2>
+    <ul>
+      <li><strong>The server holding your notes is the one that died.</strong> A pack on paper or on your phone survives it.</li>
+      <li><strong>Restores fail on details:</strong> the wrong app version, a missing encryption key, a stale database file, different container paths. Each runbook calls these out.</li>
+      <li><strong>Order matters.</strong> Bring back the hypervisor, then the password manager that holds every other secret, then the proxy, then the apps.</li>
+      <li><strong>It finds the gaps.</strong> Lab Lifeboat warns when a service has no backup location, no offsite copy or no restore test on record.</li>
+    </ul>
+
+    <h2 id="how">How it works</h2>
+    <ol>
+      <li>Add the machines you run (name, IP, OS).</li>
+      <li>Add each service with its compose folder, data paths, backup location and offsite copy.</li>
+      <li>Write where each secret lives, never the secret itself.</li>
+      <li>Print the pack or save it as a PDF, and store a copy away from the server. Export the JSON with your backups.</li>
+      <li>Do a restore drill, then record the date in “Last restore test”. <a href="restore-drill-reminder.ics" download>Add a quarterly restore-drill reminder to your calendar (.ics)</a>.</li>
+    </ol>
+
+    <h2 id="checklists">Printable restore checklists by app</h2>
+    <p>Each checklist is also on the hosted site: what to back up, restore steps, gotchas and a final check, pinned to the version we checked. Listed in the order you should restore them.</p>
+    <ol class="lbc-index">
+      <li><a href="https://homelabwise.com/tools/lab-lifeboat/proxmox-ve/">Proxmox VE backup and restore checklist</a> <span class="tag">9.2</span></li>
+      <li><a href="https://homelabwise.com/tools/lab-lifeboat/vaultwarden/">Vaultwarden backup and restore checklist</a> <span class="tag">1.37.5</span></li>
+      <li><a href="https://homelabwise.com/tools/lab-lifeboat/caddy/">Caddy backup and restore checklist</a> <span class="tag">2.11.9</span></li>
+      <li><a href="https://homelabwise.com/tools/lab-lifeboat/home-assistant/">Home Assistant backup and restore checklist</a> <span class="tag">2026.11.1</span></li>
+      <li><a href="https://homelabwise.com/tools/lab-lifeboat/nextcloud-aio/">Nextcloud AIO backup and restore checklist</a> <span class="tag">v15.0.2</span></li>
+      <li><a href="https://homelabwise.com/tools/lab-lifeboat/immich/">Immich backup and restore checklist</a> <span class="tag">v3.3.6</span></li>
+      <li><a href="https://homelabwise.com/tools/lab-lifeboat/paperless-ngx/">Paperless-ngx backup and restore checklist</a> <span class="tag">v3.4.2</span></li>
+      <li><a href="https://homelabwise.com/tools/lab-lifeboat/jellyfin/">Jellyfin backup and restore checklist</a> <span class="tag">v12.4</span></li>
+    </ol>
+
+    <h2 id="faq">FAQ</h2>
+    <details class="faq"><summary>Is Lab Lifeboat really free?</summary><p>Yes. It is free, needs no account, and has no ads or affiliate links inside the tool.</p></details>
+    <details class="faq"><summary>What is a homelab disaster recovery plan?</summary><p>A written list of what you run, where its data and backups live, and the exact steps to bring each service back on new hardware. Lab Lifeboat builds that plan for you as step-by-step runbooks you can print.</p></details>
+    <details class="faq"><summary>Where is my data stored?</summary><p>Only in this browser on this device (local storage). Nothing is uploaded. Export a JSON file to move it to another device or keep a copy with your backups.</p></details>
+    <details class="faq"><summary>Should I put passwords in it?</summary><p>No. Lab Lifeboat records where each secret is kept, for example “Vaultwarden item Immich .env” or “paper sheet in the safe”. If a field looks like a real password, key or token, it warns you.</p></details>
+    <details class="faq"><summary>Does it work offline?</summary><p>Yes. After the first visit the tool is cached on your device, so it opens without internet. You can also install it from your browser menu, and print the pack or save it as a PDF.</p></details>
+    <details class="faq"><summary>Which apps does it cover?</summary><p>Built-in runbooks for Proxmox VE, Vaultwarden, Caddy, Home Assistant, Nextcloud AIO, Immich, Paperless-ngx and Jellyfin, plus custom services where you write your own steps.</p></details>
+    <details class="faq"><summary>Which versions are the runbooks written for?</summary><p>Immich v3.3.6, Vaultwarden 1.37.5, Jellyfin v12.4, Nextcloud AIO v15.0.2, Caddy 2.11.9, Home Assistant 2026.11.1, Paperless-ngx v3.4.2 and Proxmox VE 9.2, checked against the official docs on 2026-11-10. Always restore the same version you backed up.</p></details>
+    <details class="faq"><summary>In what order should I restore my homelab?</summary><p>Hypervisor first, then your password manager (the other secrets live there), then the reverse proxy, then the apps. Lab Lifeboat sorts your pack in that order.</p></details>
+
+    <h2 id="guides">Backup and restore guides</h2>
+    <ul>
+      <li><a href="https://homelabwise.com/guides/immich-backup-restore/">Immich backup and restore</a></li>
+      <li><a href="https://homelabwise.com/guides/vaultwarden-backup/">Vaultwarden backup and restore</a></li>
+      <li><a href="https://homelabwise.com/guides/nextcloud-aio-backup-borg/">Nextcloud AIO backup with BorgBackup</a></li>
+      <li><a href="https://homelabwise.com/guides/immich-offsite-backup-restic/">Immich offsite backup with restic</a></li>
+      <li><a href="https://homelabwise.com/guides/paperless-ngx-docker-setup/">Paperless-ngx setup and backups</a></li>
+      <li><a href="https://homelabwise.com/os/proxmox-install-mini-pc/">Install Proxmox VE on a mini PC</a></li>
+      <li><a href="https://homelabwise.com/guides/jellyfin-reverse-proxy-caddy/">Jellyfin reverse proxy with Caddy</a></li>
+      <li><a href="https://homelabwise.com/guides/immich-reverse-proxy-caddy/">Immich reverse proxy with Caddy</a></li>
+    </ul>
+    <p>Runbook steps follow each project’s official documentation (checked 2026-11-10). <a href="https://homelabwise.com/how-we-research/">How we research</a> · <a href="https://homelabwise.com/privacy/">Privacy</a></p>
+  </main>
+  <footer class="lb-chrome site-footer">
+    <div class="wrap">
+      <p>Hosted version: <a href="https://homelabwise.com/tools/lab-lifeboat/">https://homelabwise.com/tools/lab-lifeboat/</a> · by SLNT Labs</p>
+    </div>
+  </footer>
+  <script src="core.js" defer></script>
+  <script src="app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "name": "lab-lifeboat",
+  "private": true,
+  "description": "Free offline restore runbook builder for homelabs.",
+  "license": "MIT",
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "start": "python3 -m http.server 8080"
+  }
+}
