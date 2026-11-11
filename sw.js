@@ -1,5 +1,5 @@
 /* Lab Lifeboat service worker: caches the tool so it works offline. Scope is this directory. Sends nothing anywhere. */
-var VERSION = "lifeboat-oss-2026-11-10";
+var VERSION = "lifeboat-oss-2026-11-11";
 var BASE = new URL("./", self.registration.scope).pathname;
 var CORE = [BASE, BASE + "index.html", BASE + "core.js", BASE + "app.js", BASE + "lifeboat.css", BASE + "manifest.webmanifest", BASE + "icon-192.png", BASE + "icon-512.png", BASE + "icon-maskable-512.png", BASE + "restore-drill-reminder.ics"];
 

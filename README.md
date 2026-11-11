@@ -24,7 +24,7 @@ Runbooks are pinned to the versions checked against official docs on 2026-11-10.
 - Caddy 2.11.9
 - Home Assistant 2026.11.1
 - Nextcloud AIO v15.0.2
-- Immich v3.3.6
+- Immich v3.4.0
 - Paperless-ngx v3.4.2
 - Jellyfin v12.4
 

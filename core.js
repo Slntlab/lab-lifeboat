@@ -9,7 +9,7 @@
   var SITE = "https://homelabwise.com";
 
   // Versions pinned in HomelabWise guides (last checked 2026-11-10).
-  var VERSIONS = { immich: "v3.3.6", vaultwarden: "1.37.5", jellyfin: "v12.4", "nextcloud-aio": "v15.0.2", caddy: "2.11.9",
+  var VERSIONS = { immich: "v3.4.0", vaultwarden: "1.37.5", jellyfin: "v12.4", "nextcloud-aio": "v15.0.2", caddy: "2.11.9",
     "home-assistant": "2026.11.1", "paperless-ngx": "v3.4.2", proxmox: "9.2" };
 
   var G = {

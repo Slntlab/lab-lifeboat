@@ -100,7 +100,7 @@ for (const t of TYPES) {
 
 test("type-specific content checks", () => {
   const im = J(C.generateRunbook(C.newService("immich", { uploadLocation: "/p", dbDataLocation: "/db" })));
-  for (const k of ["/p/backups", "new, empty DB_DATA_LOCATION (/db)", "IMMICH_VERSION is v3.3.6", "last 14", "Restore from backup"]) assert.ok(im.includes(k), k);
+  for (const k of ["/p/backups", "new, empty DB_DATA_LOCATION (/db)", "IMMICH_VERSION is v3.4.0", "last 14", "Restore from backup"]) assert.ok(im.includes(k), k);
   const vw = J(C.generateRunbook(C.newService("vaultwarden", { container: "vw1" })));
   for (const k of ["docker compose stop vw1", "docker exec vw1 /vaultwarden backup", "db.sqlite3-wal", "db.sqlite3-shm"]) assert.ok(vw.includes(k), k);
   const aio = J(C.generateRunbook(C.newService("nextcloud-aio", { aioPort: "9443", datadir: "/mnt/ncdata", borgLocation: "ssh://u@h:22/r" })));
