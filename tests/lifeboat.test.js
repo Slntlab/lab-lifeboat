@@ -11,7 +11,7 @@ function lab() {
 const text = rb => JSON.stringify(rb);
 
 test("pinned versions match the guides", () => {
-  assert.deepEqual(C.VERSIONS, { immich: "v3.4.0", vaultwarden: "1.37.5", jellyfin: "v12.4", "nextcloud-aio": "v15.0.2", caddy: "2.11.9", "home-assistant": "2026.11.1", "paperless-ngx": "v3.4.2", proxmox: "9.2" });
+  assert.deepEqual(C.VERSIONS, { immich: "v3.4.1", vaultwarden: "1.37.5", jellyfin: "v12.4", "nextcloud-aio": "v15.0.2", caddy: "2.11.9", "home-assistant": "2026.11.1", "paperless-ngx": "v3.4.2", proxmox: "9.2" });
   for (const t of Object.keys(C.VERSIONS)) assert.equal(C.newService(t).version, C.VERSIONS[t]);
 });
 
@@ -33,7 +33,7 @@ test("restore order: Proxmox, Vaultwarden, Caddy, HA, AIO, Immich, Paperless, Je
 test("Immich runbook: same version, UPLOAD_LOCATION folders, onboarding restore, down -v warning", () => {
   const s = C.newService("immich", { composeDir: "/opt/immich", uploadLocation: "/mnt/photos" });
   const t = text(C.generateRunbook(s));
-  for (const k of ["v3.4.0", "/mnt/photos/backups", "Restore from backup", "encoded-video", "docker compose down -v", "cd /opt/immich", "Administration > Maintenance", "2283"]) assert.ok(t.includes(k), k);
+  for (const k of ["v3.4.1", "/mnt/photos/backups", "Restore from backup", "encoded-video", "docker compose down -v", "cd /opt/immich", "Administration > Maintenance", "2283"]) assert.ok(t.includes(k), k);
 });
 
 test("Vaultwarden runbook: WAL warning, attachments, backup command", () => {

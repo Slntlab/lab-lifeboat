@@ -8,8 +8,8 @@
   var SCHEMA = "hlw-lab-lifeboat", SCHEMA_VERSION = 1, MAX_IMPORT_BYTES = 1000000, MAX_FIELD = 4000;
   var SITE = "https://homelabwise.com";
 
-  // Versions pinned in HomelabWise guides (last checked 2026-11-10).
-  var VERSIONS = { immich: "v3.4.0", vaultwarden: "1.37.5", jellyfin: "v12.4", "nextcloud-aio": "v15.0.2", caddy: "2.11.9",
+  // Versions pinned in HomelabWise guides (last checked 2026-11-12).
+  var VERSIONS = { immich: "v3.4.1", vaultwarden: "1.37.5", jellyfin: "v12.4", "nextcloud-aio": "v15.0.2", caddy: "2.11.9",
     "home-assistant": "2026.11.1", "paperless-ngx": "v3.4.2", proxmox: "9.2" };
 
   var G = {

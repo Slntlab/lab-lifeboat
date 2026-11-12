@@ -17,14 +17,14 @@ A hosted version is at [homelabwise.com/tools/lab-lifeboat](https://homelabwise.
 
 ## Built-in version-pinned runbooks
 
-Runbooks are pinned to the versions checked against official docs on 2026-11-10. Always restore the same version you backed up.
+Runbooks are pinned to the versions checked against official docs on 2026-11-12. Always restore the same version you backed up.
 
 - Proxmox VE 9.2
 - Vaultwarden 1.37.5
 - Caddy 2.11.9
 - Home Assistant 2026.11.1
 - Nextcloud AIO v15.0.2
-- Immich v3.4.0
+- Immich v3.4.1
 - Paperless-ngx v3.4.2
 - Jellyfin v12.4
 
